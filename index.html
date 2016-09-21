@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html><head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=yes">
+	<title>Darkest Night Hero Selector</title>
+	
+	<!-- Load external resources: Underscore, jQuery, AngularJS, Google Fonts "IM Fell" font -->
+		<script src="http://jashkenas.github.io/underscore/underscore-min.js"></script>
+		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+		<link href='https://fonts.googleapis.com/css?family=IM+Fell+DW+Pica:400italic,400' rel='stylesheet' type='text/css'>
+
+	<!-- Favicon tags (http://realfavicongenerator.net/) -->
+		<link rel="apple-touch-icon" sizes="57x57" href="src/favicon/apple-touch-icon-57x57.png?v=1">
+		<link rel="apple-touch-icon" sizes="60x60" href="src/favicon/apple-touch-icon-60x60.png?v=1">
+		<link rel="apple-touch-icon" sizes="72x72" href="src/favicon/apple-touch-icon-72x72.png?v=1">
+		<link rel="apple-touch-icon" sizes="76x76" href="src/favicon/apple-touch-icon-76x76.png?v=1">
+		<link rel="apple-touch-icon" sizes="114x114" href="src/favicon/apple-touch-icon-114x114.png?v=1">
+		<link rel="apple-touch-icon" sizes="120x120" href="src/favicon/apple-touch-icon-120x120.png?v=1">
+		<link rel="apple-touch-icon" sizes="144x144" href="src/favicon/apple-touch-icon-144x144.png?v=1">
+		<link rel="apple-touch-icon" sizes="152x152" href="src/favicon/apple-touch-icon-152x152.png?v=1">
+		<link rel="apple-touch-icon" sizes="180x180" href="src/favicon/apple-touch-icon-180x180.png?v=1">
+		<link rel="icon" type="image/png" href="src/favicon/favicon-32x32.png?v=1" sizes="32x32">
+		<link rel="icon" type="image/png" href="src/favicon/android-chrome-192x192.png?v=1" sizes="192x192">
+		<link rel="icon" type="image/png" href="src/favicon/favicon-96x96.png?v=1" sizes="96x96">
+		<link rel="icon" type="image/png" href="src/favicon/favicon-16x16.png?v=1" sizes="16x16">
+		<link rel="manifest" href="src/favicon/manifest.json?v=1">
+		<link rel="mask-icon" href="src/favicon/safari-pinned-tab.svg?v=1" color="#914242">
+		<link rel="shortcut icon" href="src/favicon/favicon.ico?v=1">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="msapplication-TileImage" content="src/favicon/mstile-144x144.png?v=1">
+		<meta name="theme-color" content="#000000">
+		
+	<script>
+		
+		//Some optional application settings
+		var easterEggsOn = false;
+
+		//Angular app
+		var app = angular.module('DarkestNightApp', []);
+
+		//Angular HEROES controller
+		app.controller('HeroesController', function($scope){
+			
+			$scope.heroes = [
+				{
+					"name": "Acolyte",
+					"set": {"id": 0}
+				},
+				{
+					"name": "Druid",
+					"set": {"id": 0}
+				},
+				{
+					"name": "Knight",
+					"set": {"id": 0}
+				},
+				{
+					"name": "Priest",
+					"set": {"id": 0}
+				},
+				{
+					"name": "Prince",
+					"set": {"id": 0}
+				},
+				{
+					"name": "Rogue",
+					"set": {"id": 0}
+				},
+				{
+					"name": "Scholar",
+					"set": {"id": 0}
+				},
+				{
+					"name": "Seer",
+					"set": {"id": 0}
+				},
+				{
+					"name": "Wizard",
+					"set": {"id": 0}
+				},
+				{
+					"name": "Crusader",
+					"set": {"id": 1}
+				},
+				{
+					"name": "Monk",
+					"set": {"id": 1}
+				},
+				{
+					"name": "Paragon",
+					"set": {"id": 1}
+				},
+				{
+					"name": "Shaman",
+					"set": {"id": 1}
+				},
+				{
+					"name": "Ranger",
+					"set": {"id": 2}
+				},
+				{
+					"name": "Scout",
+					"set": {"id": 2}
+				},
+				{
+					"name": "Wayfarer",
+					"set": {"id": 2}
+				},
+				{
+					"name": "Wind Dancer",
+					"set": {"id": 2}
+				},
+				{
+					"name": "Channeler",
+					"set": {"id": 3}
+				},
+				{
+					"name": "Exorcist",
+					"set": {"id": 3}
+				},
+				{
+					"name": "Mesmer",
+					"set": {"id": 3}
+				},
+				{
+					"name": "Valkyrie",
+					"set": {"id": 3}
+				},
+				{
+					"name": "Alchemist",
+					"set": {"id": 4}
+				},
+				{
+					"name": "Bard",
+					"set": {"id": 4}
+				},
+				{
+					"name": "Conjurer",
+					"set": {"id": 4}
+				},
+				{
+					"name": "Tamer",
+					"set": {"id": 4}
+				},
+				{
+					"name": "Enchanter",
+					"set": {"id": 5}
+				},
+				{
+					"name": "Mercenary",
+					"set": {"id": 5}
+				},
+				{
+					"name": "Nymph",
+					"set": {"id": 5}
+				},
+				{
+					"name": "Tinker",
+					"set": {"id": 5}
+				}
+			];
+			if(easterEggsOn){
+				$scope.heroes.push(				
+					{
+						"name": "Bob",
+						"set": {"id": 6}
+					},
+					{
+						"name": "Necromancer",
+						"set": {"id": 6}
+					},
+					{
+						"name": "Dr Strange",
+						"set": {"id": 6}
+					},
+					{
+						"name": "D Master",
+						"set": {"id": 6}
+					}
+				);
+			}
+		});
+
+		//Angular SETS controller
+		app.controller('SetsController', function($scope){
+			$scope.sets = [
+				{"id": 0, "name": "Base Set", "longname": "Darkest Night Base Game"},
+				{"id": 1, "name": "#1: With An Inner Light", "longname": "Darkest Night Expansion #1: With An Inner Light"},
+				{"id": 2, "name": "#2: On Shifting Winds", "longname": "Darkest Night Expansion #2: On Shifting Winds"},
+				{"id": 3, "name": "#3: From the Abyss", "longname": "Darkest Night Expansion #3: From the Abyss"},
+				{"id": 4, "name": "#4: In Tales of Old", "longname": "Darkest Night Expansion #4: In Tales of Old"},
+				{"id": 5, "name": "#5: From Distant Lands", "longname": "Darkest Night Expansion #5 (Promo Pack): From Distant Lands"}
+			];
+			if(easterEggsOn){
+				$scope.sets.push(
+					{"id": 6, "name": "---", "longname": "---"}
+				);
+			}
+		});
+		
+
+		//Application functions
+		
+		function GenerateHeroes(HowMany){
+			
+			UpdateResults("");									// clear results area on the page
+			
+			var PotentialHeroes = $("[id*='hero_']:checked");	// collect all checked heroes from the list
+			//Check to ensure that enough heroes are selected
+				if(PotentialHeroes.length < HowMany){
+					UpdateResults("<em>(not enough heroes selected)</em>");
+					return;
+				}
+
+			var RandomNumberArray = [];			// list of random numbers
+			var r; 								// single random number
+
+			//Do this once per desired hero
+			for(var i=0; i<HowMany; i++){
+				//Pick a random number (keep trying if it happens to already be chosen for a previous number)
+					do{
+						r = RandomNumberBetweenOneAndX(PotentialHeroes.length);	
+					} while(
+						$.inArray(r, RandomNumberArray) > -1 //i.e. keep resetting r if we found it already exists
+					);
+					RandomNumberArray.push(r);				
+			}
+			
+			//For each of our random numbers, find the hero at that index
+			var SelectedHeroIndexes = [];		// empty array to hold result hero indexes
+			var SelectedHeroNames = [];			// empty array to hold result hero names
+			_.each(RandomNumberArray, function(n){
+				var HeroIndex = PotentialHeroes[n-1].getAttribute('data-hero-index'); //shift random number down by 1 to account for 0-based index of PotentialHeroes array
+				var HeroName = PotentialHeroes[n-1].getAttribute('data-hero-name');
+				SelectedHeroNames.push(HeroName);
+			});
+
+			//Output heroes to results section
+			UpdateResults( GenerateHTMLResultsFromHeroNameArray( SelectedHeroNames ));
+		}
+		
+		function RandomNumberBetweenOneAndX(x){
+			return Math.floor((Math.random() * x) + 1);
+		}
+		
+		function GenerateHTMLResultsFromHeroNameArray(HeroNameArray){
+			var s = "";
+			var heroNameForFile;
+			_.each(HeroNameArray, function(heroNameProper){
+				heroNameForFile = heroNameProper.toLowerCase();		//make lowercase ("Bard" -> "bard")
+				heroNameForFile = heroNameForFile.replace(" ", ""); //remove spaces ("wind dancer -> winddancer")
+				s += "<div class=\"heroResult\">"
+				s += 	"<div class=\"heroImg\">"
+				s += 		"<img src=\"src/hero_profile_"+heroNameForFile+".jpg\" class=\"heroCloseup\" />"
+				s += 		"<img src=\"src/hero_img_"+heroNameForFile+".jpg\" class=\"heroReg\" />"
+				s += 	"</div>"
+				s += 	"<div class=\"heroName\">" + heroNameProper + "</div>"
+				s += "</div>"
+			});
+			return s;
+		}
+		
+		function UpdateResults(resultsHTML){
+			$("#resultsList").html(resultsHTML);
+		}
+		
+		function ClickCheckbox(element){
+			//The element that gets passed in is the input/checkbox element that was clicked by the user.
+		
+			// First, see if it's the "Check All" checkbox.
+			if(element.id=="checkAll"){
+				if(element.checked){
+					$("input[type='checkbox'].set").prop("checked", true);		// Check all sets.
+					$("input[type='checkbox'].hero").prop("checked", true);		// Check all heroes.
+				}else{
+					$("input[type='checkbox'].set").prop("checked", false);		// Uncheck all sets.
+					$("input[type='checkbox'].hero").prop("checked", false);	// Uncheck all heroes.
+				}
+				return;
+			}
+
+			// Set flags
+			var IsHeroCheckbox = $(element).hasClass('hero');
+			var IsSetCheckbox = $(element).hasClass('set');
+			var setID;	//The Set ID of whatever was clicked (set or hero).
+			
+			// For sets:
+			if(IsSetCheckbox){
+				setID = element.getAttribute('data-set-id');
+				if(element.checked){
+					//Check all heroes in the set.
+					CheckHeroesBySet(true, setID);
+					
+					//If all sets are now checked, also check the "check all" box.
+					if ( $("input[type='checkbox'].set:not(:checked)").length == 0 ){
+						$("#checkAll").prop("checked", true);
+					}
+					
+				} else {
+					//Uncheck all heroes in the set.
+					CheckHeroesBySet(false, setID);
+					//Uncheck the "check all" box.
+					$("#checkAll").prop("checked",false);
+				}
+				return;
+			}
+			
+			// For heroes:
+			if(IsHeroCheckbox){
+				setID = element.getAttribute('data-hero-set');
+				if(element.checked){
+					//If all heroes in the set are checked, also check the set.
+					if	( $("input[type='checkbox'].hero[data-hero-set='"+setID+"']:not(:checked)").length == 0 ){
+						CheckSet(setID, true); 
+					}
+					//If all heroes are now checked, also check the "check all" box.
+					if ( $("input[type='checkbox'].hero:not(:checked)").length==0 ){
+						$("#checkAll").prop("checked", true);
+					}					
+				} else {
+					//We unchecked a hero, so that set is no longer fully selected.
+					//Uncheck the set that this hero was in.
+					CheckSet(setID, false);
+					//Also uncheck the "check all" box.
+					$("#checkAll").prop("checked", false);
+				}
+				return;
+			}
+		}
+		
+		function CheckHeroesBySet(checked, set){
+			// The first parameter (checked) should be T/F.
+			// The second parameter (set) is the Set ID.
+			$("input[type='checkbox'].hero[data-hero-set='"+set+"']").prop('checked', checked);
+		}
+		
+		function CheckSet(setID, checked){
+			$("input[type='checkbox'].set[data-set-id='"+setID+"']").prop('checked', checked);
+		}
+		
+		$('document').ready(function(){
+			
+			//Attach event handlers
+				$("#GenerateSingleHero").on("click", function(){GenerateHeroes(1);});
+				$("#GenerateAllHeroes").on("click", function(){GenerateHeroes(4);});
+				$("input[type='checkbox']").on("click", function(event){ClickCheckbox(event.toElement);});
+				
+			//Add set separators between heroes
+				var setIDs = [];
+				_.each($("input[type=checkbox].set"), function(set){
+					setIDs.push(set.getAttribute("data-set-id"));
+				});
+				_.each(setIDs, function(setID){
+					//console.log("adding separator after set # " + setID);
+					$("input[type='checkbox'].hero[data-hero-set='"+setID+"']:last").parent().after("<hr class=\"hero-set-separator\" />");
+				});
+				
+			//Default checkbox states
+				//$("#checkAll").trigger("click");
+			
+		});	// END jquery doc onready actions	
+		
+	</script>
+	<style>
+		
+		html, body{
+			margin: 0px;
+			padding: 0px;
+			height: 100%;
+			width: 100%;
+			background-color: darkgrey;
+		}
+		* {box-sizing: border-box;}
+		* {transition: ease all 1s;}
+
+		/* Custom scrollbar styling */
+			::-webkit-scrollbar{ width: 10px; }
+			::-webkit-scrollbar-track{
+				-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+				border-radius: 5px;
+			}
+			::-webkit-scrollbar-track-piece{
+				background-color: rgba(0,0,0,0.05);
+				border-radius: 5px;
+			}
+			::-webkit-scrollbar-thumb{
+				background-color: rgba(0,0,0,0.1);
+				-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+				border-radius: 5px;
+			}
+			::-webkit-scrollbar-button{ display: none; }
+			::-webkit-scrollbar-corner{}
+			::-webkit-resizer{} 
+		
+		#appContainer{
+			width: 100%;
+			height: 100%;			
+			font-family: 'IM Fell DW Pica', serif;
+			background-color: black;
+			min-height: 400px;
+		}
+		/*
+		div.fullWidth{
+			width: 100%;
+		}
+		*/
+		
+		/* 4 main components of doc: headerTitle, headerGraphic, content, footer */
+		
+		#headerTitle{
+			height: 50px;
+			font-size: 36px;
+			color: white;
+				text-align: center;
+				text-shadow: 3px 3px 3px black;
+			background-image: url(src/header.jpg);
+				background-size: auto 100%;
+				background-position: center;
+				background-repeat: no-repeat;
+			cursor: default;
+		}
+		
+		#headerGraphic{
+			height: 100px;
+			background-image: url(src/banner.jpg);
+				background-size: auto 100%;
+				background-position: center;
+				background-repeat: no-repeat;
+		}
+		
+		#content{
+			height: calc(100% - 50px - 100px - 40px); 	/* calc = full height of parent, minus heights of header title, header graphic, footer .
+														Heights of other elements are explicit pixel values.  
+														#content should dynamically take up the remaining vertical space at all times. */					 
+			color: black;			
+		}	
+		
+			.contentTitle{
+				height: 40px;
+				font-size: 20px;
+				font-weight: bold;
+				cursor: default;
+				padding-left: 15px;
+				padding-top: 10px;
+			}
+			.contentSubTitle{
+				height: 30px;
+				font-size: 18px;
+				font-weight: bold;
+				font-style: italic;
+				cursor: default;
+			}
+			.contentTitle:not(.narrow){display: block;}	/* When space allows, show the full titles. Otherwise, show shorted versions. */
+			.contentTitle.narrow{display: none;}
+			
+			#filterColumn{
+				height: 100%;
+				width: 60%;
+				float: left;
+				transition: none;				
+				background-image: url(src/parchment.jpg);
+					background-size: 100% 100%;
+					background-color: beige;
+				padding-bottom: 4px;
+			}
+				#filterColumn label{
+					font-size: 16px;
+					font-weight: bold;
+					cursor: pointer;
+					transition: 0.05s;
+				}
+				#filterColumn label:hover{
+					text-shadow: 0px 0px 12px rgba(0,0,0,0.5);
+				}
+				
+				/* Custom checkboxes */
+				#filterColumn input[type=checkbox]{
+					-webkit-appearance: none;	/* disable default browser rendering of checkboxes */
+					background-color: rgba(255,255,255,0.3);
+					box-shadow: inset 0px 0px 6px rgba(0,0,0,0.5);
+					border-radius: 6px;
+					display: inline-block;
+					position: relative;
+					top: 7px;			/* checkboxes are too high up on each line; bring them down so they're even w/ hero name */
+					margin-top: -4px;	/* decrease vertical spacing between checkboxes */
+					width: 20px;		
+					height: 20px;		
+					transition: all ease 0.3s;
+					cursor: pointer;
+				}
+					#filterColumn input[type=checkbox]:focus {outline:0;}
+					#filterColumn input[type=checkbox]:active, #filterColumn input[type=checkbox]:checked:active{
+						/* not used */
+					}
+					#filterColumn input[type=checkbox]:checked{
+						box-shadow: inset 10px -10px 20px -10px rgba(0,0,0,0.5);
+						border-radius: 10px;
+						background-image: url(src/darknessicon.png);
+						background-repeat: no-repeat;
+					}
+				/* END custom checkboxes */
+				
+				#filterSetsColumn{
+					height: calc(100% - 40px); 			/* 100%, minus height of content title */
+					width: 75%;
+					float: left;
+					transition: none;
+					padding-left: 15px;
+				}
+					#filterSetsColumn .longSetNames{display: inline;}	/* When space allows, show full set name. Otherwise, shorten it. */
+					#filterSetsColumn .shortSetNames{display: none;}
+				#filterHeroesColumn{
+					height: calc(100% - 40px); 			/* 100%, minus height of content title */
+					width: 25%;
+					float: right;
+					transition: none;
+					padding-right: 15px;
+				}
+					#setsList{
+						height: calc(100% - 30px); 		/* 100%, minus height of content subtitle */
+						overflow: auto;
+					}
+					#heroesList{
+						height: calc(100% - 30px); 		/* 100%, minus height of content subtitle */
+						overflow: auto;
+					}
+						hr.hero-set-separator{
+							margin-top: 2px;
+							margin-bottom: 4px;
+							border: none;
+							background-color: #af905d;
+							height: 1px;
+						}
+						
+			#resultColumn{
+				height: 100%;
+				width: 40%;
+				float: right;
+				transition: none;
+				background-image: url(src/parchment.jpg);
+				background-size: 100% 100%;
+				background-color: beige;
+				padding-bottom: 4px;
+				padding-left: 15px;
+				padding-right: 15px;	
+			}
+				#resultColumn button{		/* base img size: 178w x 56h */
+					width: 178px;
+					height: 56px;
+					background-size: 100% 100%;
+					margin-bottom: 4px;
+					border: 0;
+					cursor: pointer;
+					transition: 0.3s;
+				}
+				button:focus{outline:0;}	/* remove browser-based blue outline around focused buttons */
+				#resultColumn button:hover{
+					box-shadow: 0px 0px 12px rgba(0,0,0,0.8)
+				}
+				#resultColumn button:active{			/* make the button appear depressed :( */   /* switched this to a two-image method, but may later incorporate css-based solution */
+					/*transform: translate(1px, 1px);*/
+					/*border: 1px solid rgba(0,0,0,0.6);*/
+					/*border-right: 0;*/
+					/*border-bottom: 0;*/
+					transition: none;	/* remove animation so the button reacts quickly */
+				}
+				#GenerateSingleHero{background-image: url("src/hero_button_single.jpg");}
+					#GenerateSingleHero:active{background-image: url(src/hero_button_single_depressed.jpg);}
+				#GenerateAllHeroes{background-image: url("src/hero_button_multi.jpg");}
+					#GenerateAllHeroes:active{background-image: url(src/hero_button_multi_depressed.jpg);}
+				
+				#resultsList{
+					height: calc(100% - 40px - (56px) - 2px); 	/* 
+																entire vertical height of container (i.e. resultColumn), 
+																minus height of content title,
+																minus height of buttons,
+																minus arbitrary # for small amount of spacing at bottom of list
+																*/
+
+
+					overflow: auto;
+				}
+					.heroResult{ 	/* container for hero imgs + name */
+						/* does nothing in its default state, but is modified later by media queries */
+					}
+						.heroImg {
+							height: 100px;
+							width: 100px;
+							border: black solid 1px;
+							box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+							display: inline-block;
+							position: relative;
+						}
+							.heroImg img{
+								width: 100%;
+								height: 100%;
+								position: absolute;
+								transition: 0.6s ease all;
+							}
+							.heroImg .heroReg:hover {
+								opacity: 0;				/* fade out the normal hero img so the close-up (which is underneath) can show through */
+							}
+						.heroName {
+							display: inline;
+							font-size: 24px;
+							cursor: default;
+							margin-left: 20px;
+							position: relative;
+							top: -40px;			/* in the default, no-media-query state, the name lines up to the right of the hero img; this top adjustment makes sure it's aligned with the center of the img */
+						}
+			
+		#footer{
+			height: 40px;
+			background-image: url(src/footer.jpg);
+				background-size: auto 100%;			
+				background-position: center;
+				background-repeat: no-repeat;
+		}
+			.footerText{
+				font-size: 14px;
+					color: #111111;
+					text-align: center;
+				padding-top: 10px;
+				cursor: default;
+				height: 100%; overflow: hidden; /* just in case there's too much text in footer, control the div size - don't let it grow larger */
+			}
+	
+		
+		
+		
+		
+		/* MEDIA QUERY: EXTRA-WIDE */
+		
+		@media (min-width: 1230px){ /*1041px*/
+			.heroResult{	
+				display: inline-block;	/* allow heroes to line up side-by-side */
+				margin-right: 8px;		/* space between heroes */
+				margin-bottom: 4px;
+				position: relative; 	/* so contents inside (i.e. hero name) can be positioned absolutely */
+			}
+			.heroName{					/* show hero name as an overlay on top of the img */
+				display: block;
+					position: absolute;
+					top: 152px;
+					margin-left: 0;
+				text-align: center;
+					width: 200px;
+				font-size: 36px;
+					color: white;
+					text-shadow: 0px 0px 4px black;
+			}
+			.heroImg{					/* enlarge hero image size */
+				height: 200px;
+				width: 200px;
+				box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.8);
+			}
+			#filterColumn{ width: 50%;}	/* resize column width ratio slightly */
+			#resultColumn{ width: 50%;}
+		}
+		
+		/* MEDIA QUERY: SHORT HEIGHT, NON-MOBILE */
+		@media (max-height: 600px) and (min-width: 582px){	/* for everything wider than mobile, but a short vertical height */
+			.heroResult{
+				display: inline-block;	/* show heroes side-by-side if there's room, otherwise they flow down to the next line */
+				margin-right: 6px;
+			}
+			.heroName{
+				display: inline;
+				position: relative;
+				top: -22px;			/* adjust name position to align with new img size */
+				width: auto;
+				margin-left: 4px;
+				text-align: left;
+				color: black;
+				text-shadow: none;
+				font-size: 24px;
+			}
+			.heroImg{			/* make hero images smaller, to fit more content into a cramped window size */
+				width: 65px;
+				height: 65px;
+			}
+			
+		}
+				
+		/* MEDIA QUERY: NARROW */
+		@media (max-width: 1040px){
+			/* Some titles and labels start to wrap or get hidden, so resize some columns, shorten text, and shrink some things down. */
+			
+			#filterSetsColumn{
+				width: 60%;
+			}
+			#filterHeroesColumn{
+				width: 40%;
+			}
+			#filterSetsColumn .longSetNames{display: none;}
+			#filterSetsColumn .shortSetNames{display: inline;}
+			
+			.contentTitle:not(.narrow){display: none;}	
+			.contentTitle.narrow{display: block;}
+			
+			#resultColumn button{		/* base img size: 178w x 56h */
+				width: 100px;
+				height: calc((100px*56)/178);	/* use cross-product math to adjust height proportionally to specific width */
+			}
+			#resultsList{
+				height: calc(100% - 40px - ((100px*56)/178) - 4px); 	/* 
+															entire vertical height of container (i.e. resultColumn), 
+															minus height of content title,
+															minus height of buttons,
+															minus arbitrary # for small amount of spacing at bottom of list
+															*/
+			}
+		}
+		
+		/* MEDIA QUERY: interim: stop wrapping of long hero names */
+		@media (max-width: 760px) and (min-width: 584px) and (min-height: 600px){
+			.heroName{
+				font-size: 14px;
+				margin-left: 6px;
+				top: -42px;
+			}
+		}
+		@media (max-width: 760px) and (min-width: 584px) and (max-height: 600px){
+			.heroName{
+				font-size: 14px;
+				margin-left: 6px;
+				top: -27px;
+			}
+		}
+		
+		/* MEDIA QUERY: interim: LARGE MOBILE LANDSCAPE, SQUEEZE FOR MORE ROOM, PRE-MOBILE LAYOUT */
+		@media (max-height: 400px) and (max-width: 670px){	/* for popular mobile landscape sizes, shrink down the title/header height so we can fit more content on the screen */
+			#headerTitle{
+				height: 32px;
+				font-size: 24px;
+			}
+			#headerGraphic{
+				height: 50px;
+			}
+			
+			#content{
+				height: calc(100% - 32px - 50px - 40px); 	/* calc = full height of parent, minus heights of header title, header graphic, footer .
+															Heights of other elements are explicit pixel values.  
+															#content should dynamically take up the remaining vertical space at all times. */				 
+			}	
+		}
+
+		
+		/* MEDIA QUERY: MOBILE */
+		@media (max-width: 584px){
+			/* 
+				All calc heights become auto (natural document flow, not forced size). 
+				Multi-column sections (width < 100%) become full-width (100%) and stack vertically underneath each other.
+				Forced heights (non-calc'd) shrink. Sizes of fonts and graphics shrink.
+			*/
+			#headerTitle{
+				height: 30px;
+				font-size: 20px;
+			}
+			#headerGraphic{
+				height: 40px;
+			}
+			#content{
+				height: auto;
+			}
+			#footer{
+				height: 30px;
+			}
+			.footerText{
+				padding-top: 4px;	/* move it up so we can fit two lines of text */
+				font-size: 12px;
+				line-height: 12px;
+			}
+			#filterColumn, #resultColumn{
+				width: 100%;
+				float: none;
+				height: auto;
+			}
+			#filterSetsColumn, #filterHeroesColumn{
+				width: 100%;
+				float: none;
+				height: auto;
+			}
+			#filterHeroesColumn{
+				padding-left: 15px;
+				padding-top: 10px;
+				padding-bottom: 30px; /* When this column is full-height (listing all heroes in mobile mode), the bg img is stretched very tall and has dark areas near the bottom. Add padding to avoid placing text over this area. */
+			}
+			#setsList, #heroesList, #resultsList{
+				height: auto;
+			}
+			#resultColumn button{		/* base img size: 178w x 56h */
+				width: 142px;
+				height: calc((142px*56)/178);	/* use cross-product math to adjust height proportionally to specific width */
+			}
+		}
+		
+		/* MEDIA QUERY: interim: SUPER-WIDE: MAKE MORE ROOM TO FIT LARGEST HERO IMAGES */
+		@media (min-width: 1600px){
+			#filterColumn{width: 40%;}
+			#resultColumn{width: 60%;}
+		}
+		
+	</style>
+</head>
+<body>
+	
+	<div id="appContainer" ng-app="DarkestNightApp">
+		
+		<div id="headerTitle">
+			Darkest Night: Random Hero Selector
+		</div>
+
+		<div id="headerGraphic"></div>
+
+		<div id="content">
+			
+			<div id="filterColumn">
+				<div class="contentTitle">Choose Hero Possibilities</div>
+				<div class="contentTitle narrow">Choose Hero Possibilities</div>
+				
+				<div id="filterSetsColumn">
+					<div class="contentSubTitle">
+						Use all heroes in a set:
+					</div>
+	
+					<div id="setsList" ng-controller="SetsController">
+						
+						<input type="checkbox" id="checkAll" />
+						<label for="checkAll" style="font-style: italic;">Check All</label>
+								
+						<div ng-repeat="set in sets">
+							
+							<input type="checkbox" 
+									id="set_{{set.id}}" 
+									class="set" 
+									data-set-id="{{set.id}}" />
+							<label for="set_{{set.id}}" class="longSetNames">{{set.longname}} </label>
+							<label for="set_{{set.id}}" class="shortSetNames">{{set.name}} </label>
+						
+						</div>
+							
+					</div>
+
+				</div>
+				<div id="filterHeroesColumn">
+					<div class="contentSubTitle">
+						Use specific heroes:
+					</div>
+
+					<div id="heroesList" ng-controller="HeroesController">
+						<hr class="hero-set-separator" />
+						<div ng-repeat="hero in heroes">							
+							<div><!-- div wrapper for each hero: required so HRs can be dynamically inserted between sets -->		
+								<input type="checkbox" 
+										id="hero_{{$index}}" 
+										class="hero" data-hero-index="{{$index}}" 
+										data-hero-name="{{hero.name}}" 
+										data-hero-set="{{hero.set.id}}"/>
+								<label for="hero_{{$index}}">{{hero.name}} </label>
+							</div>
+						</div>
+					</div>
+				
+				</div>
+			</div><!-- END filterColumn -->
+			
+			<div id="resultColumn">
+				<div class="contentTitle">Generate Your Randomly-Selected Heroes</div>
+				<div class="contentTitle narrow">Generate Heroes</div>
+				
+				<button id="GenerateSingleHero" title="Pick 1 hero"></button>
+				<button id="GenerateAllHeroes" title="Pick 4 heroes"></button>
+				
+				<div id="resultsList">
+					<!-- results dynamically get placed here -->
+				</div>
+				
+			</div>
+			
+		</div><!-- END content div -->
+
+		<div id="footer">
+			<div class="footerText">
+				Darkest Night: &copy; Victory Point Games.
+				This is a non-commercial, fan-made application.
+			</div>
+		</div>
+		
+	</div><!-- END: #appContainer -->
+	
+</body>
+</html>
